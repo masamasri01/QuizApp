@@ -1,4 +1,4 @@
-# QuizApp
+# Online Quiz Management System
 
 ## **Project Overview**
 
@@ -34,7 +34,17 @@ Participants (referred to as **Respondents**) can take quizzes without the need 
 - **API Documentation**: Integrated API documentation for quiz creation and response submission using tools like Postman.
 
 
+## **Technologies Used**
 
-
-#### UML Class Diagram:
+#### **UML Class Diagram**
 ![image](https://github.com/user-attachments/assets/f9efc95f-1ea1-4e6b-862a-f95221314714)
+
+
+
+## **Epics and User Stories**
+
+- As an **Examiner**, I want to create quizzes so that I can assess respondents' knowledge.
+- As an **Examiner**, I want to edit or delete quizzes so that I can maintain accurate content.
+- As an **Examiner**, I want to create multiple-choice and checkbox questions so that I can design diverse quizzes.
+- As a **Respondent**, I want to take quizzes without logging in so that I can easily participate and provide my answers.
+- As an **Examiner**, I want to view quiz results, including the average scores and number of respondents, so that I can analyze performance.
