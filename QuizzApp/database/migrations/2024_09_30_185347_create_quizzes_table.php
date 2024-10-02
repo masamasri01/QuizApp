@@ -15,8 +15,8 @@ return new class extends Migration
     {
             Schema::create('quizzes', function (Blueprint $table) {
                 $table->id();
-                $table->string('title'); // Add title column
-                $table->text('description')->nullable(); // Add description column
+                $table->string('title'); 
+                $table->text('description')->nullable();
                 $table->timestamps();
             });
         
