@@ -2,9 +2,8 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Foundation\Auth\AuthenticatesUsers; // Ensure you include the necessary traits
-use App\Http\Controllers\Controller; // Make sure this line is present
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers; 
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;

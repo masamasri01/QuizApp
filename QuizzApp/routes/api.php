@@ -6,6 +6,9 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\AnswerController;
 
 
 
@@ -34,9 +37,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 Route::get('users', [UserController::class, 'index'])->middleware('auth:sanctum');
+//Route::get('quizzes', [QuizController::class, 'index']);
 
 
-// routes/api.php
+Route::apiResource('quizzes', QuizController::class);
+Route::apiResource('quizzes.questions', QuestionController::class);
+Route::apiResource('questions.options', OptionController::class);
+Route::apiResource('questions.answers', AnswerController::class);
 
-
-Route::post('/quizzes', [QuizController::class, 'store']);

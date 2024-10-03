@@ -1,80 +1,50 @@
 <?php
 
-namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Quiz;
-class QuizController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-          // Validate the incoming request
-          $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-
-        // Create a new quiz
-        $quiz = Quiz::create([
-            'title' => $request->title,
-            'description' => $request->description,
-        ]);
-
-        // Return response
-        return response()->json([
-            'message' => 'Quiz created successfully!',
-            'quiz' => $quiz
-        ], 201);
+    namespace App\Http\Controllers;
     
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    use App\Models\Question;
+    use App\Models\Quiz;
+    use Illuminate\Http\Request;
+    
+    class QuestionController extends Controller
     {
-        //
+        public function index(Quiz $quiz)
+        {
+            return $quiz->questions;
+        }
+    
+        public function store(Request $request, Quiz $quiz)
+        {
+            $request->validate([
+                'question_text' => 'required|string',
+                'question_type' => 'required|in:Multiple Choice,Checkbox',
+            ]);
+    
+            $question = $quiz->questions()->create($request->all());
+            return response()->json($question, 201);
+        }
+    
+        public function show(Quiz $quiz, Question $question)
+        {
+            return $question;
+        }
+    
+        public function update(Request $request, Quiz $quiz, Question $question)
+        {
+            $request->validate([
+                'question_text' => 'sometimes|required|string',
+                'question_type' => 'sometimes|required|in:Multiple Choice,Checkbox',
+            ]);
+    
+            $question->update($request->all());
+            return response()->json($question, 200);
+        }
+    
+        public function destroy(Quiz $quiz, Question $question)
+        {
+            $question->delete();
+            return response()->json(null, 204);
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-}
+    
