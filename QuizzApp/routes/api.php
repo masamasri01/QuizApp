@@ -37,8 +37,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 Route::get('users', [UserController::class, 'index'])->middleware('auth:sanctum');
-//Route::get('quizzes', [QuizController::class, 'index']);
-
 
 Route::apiResource('quizzes', QuizController::class);
 Route::apiResource('quizzes.questions', QuestionController::class);

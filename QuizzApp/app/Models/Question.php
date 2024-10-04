@@ -12,7 +12,7 @@ class Question extends Model
     protected $primaryKey = 'question_id';
     public function options()
     {
-        return $this->hasMany(Option::class);
+        return $this->hasMany(Option::class, 'question_id');
     }
     public function quiz()
     {

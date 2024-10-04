@@ -11,7 +11,7 @@ class AnswerController extends Controller
 {
     public function index(Question $question)
     {
-        return $question->answers; // Assuming you have a relationship defined
+        return $question->answers;
     }
 
     public function store(Request $request, Question $question)
@@ -21,10 +21,16 @@ class AnswerController extends Controller
             'user_answer' => 'required|string',
         ]);
 
-        $answer = $question->answers()->create($request->all());
+        $answer = new Answer([
+            'question_id' => $question->question_id, 
+            'user_id' => $request->user_id,
+            'user_answer' => $request->user_answer,
+        ]);
+
+        $answer->save(); // Save the new answer to the database
+
         return response()->json($answer, 201);
     }
-
     public function show(Question $question, Answer $answer)
     {
         return $answer;
