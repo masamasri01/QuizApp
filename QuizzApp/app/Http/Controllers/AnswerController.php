@@ -17,13 +17,13 @@ class AnswerController extends Controller
     public function store(Request $request, Question $question)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'solved_id' => 'required|exists:users,id',
             'user_answer' => 'required|string',
         ]);
 
         $answer = new Answer([
             'question_id' => $question->question_id, 
-            'user_id' => $request->user_id,
+            'solved_id' => $request->solved_id,
             'user_answer' => $request->user_answer,
         ]);
 
@@ -31,10 +31,27 @@ class AnswerController extends Controller
 
         return response()->json($answer, 201);
     }
-    public function show(Question $question, Answer $answer)
-    {
-        return $answer;
+    // app/Http/Controllers/AnswerController.php
+
+public function show(Question $question, Request $request)
+{
+    // Validate that solved_id is passed in the request
+    $request->validate([
+        'solved_id' => 'required|exists:solveds,solved_id',
+    ]);
+
+    // Find the answer based on both question_id and solved_id
+    $answer = Answer::where('question_id', $question->question_id)
+                    ->where('solved_id', $request->solved_id)
+                    ->first();
+
+    if ($answer) {
+        return response()->json($answer, 200);
+    } else {
+        return response()->json(['message' => 'Answer not found'], 404);
     }
+}
+
 
     public function update(Request $request, Question $question, Answer $answer)
     {

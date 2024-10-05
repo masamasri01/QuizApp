@@ -14,30 +14,21 @@
             return $quiz->questions;
         }
 
-        // public function store(Request $request, Quiz $quiz)
-        // {
-        //     $request->validate([
-        //         'question_text' => 'required|string',
-        //         'question_type' => 'required|in:Multiple Choice,Checkbox',
-        //     ]);
-
-        //     $question = $quiz->questions()->create($request->all());
-        //     return response()->json($question, 201);
-        // }
+        
 
         public function store(Request $request)
-{
-    $request->validate([
-        'title' => 'required|string',
-        'description' => 'required|string',
-        'examiner_id' => 'required|integer',
-        'time_limit' => 'required|integer',
-        'status' => 'required|string|in:active,inactive',
-    ]);
+        {
+            $request->validate([
+                'title' => 'required|string',
+                'description' => 'required|string',
+                'examiner_id' => 'required|integer',
+                'time_limit' => 'required|integer',
+                'status' => 'required|string|in:active,inactive',
+            ]);
 
-    $quiz = Quiz::create($request->all());
-    return response()->json($quiz, 201);
-}
+            $quiz = Quiz::create($request->all());
+            return response()->json($quiz, 201);
+        }
 
         public function show(Quiz $quiz, Question $question)
         {

@@ -22,4 +22,8 @@ class Quiz extends Model
     {
         return $this->hasMany(Question::class, 'quiz_id'); 
     }
+    public function solved()
+    {
+        return $this->hasMany(Solved::class, 'quiz_id'); 
+    }
 }
