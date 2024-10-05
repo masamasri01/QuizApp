@@ -35,7 +35,7 @@ Participants (referred to as **Respondents**) can take quizzes without the need 
 
 
 #### **UML Class Diagram**
-![image](https://github.com/user-attachments/assets/f9efc95f-1ea1-4e6b-862a-f95221314714)
+![image](https://github.com/user-attachments/assets/77fe1807-4ff5-4fdb-a696-50d66039f873)
 
 
 
