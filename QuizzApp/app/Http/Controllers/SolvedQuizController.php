@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Solved;
 use Illuminate\Http\Request;
 use App\Http\Resources\SolvedQuizResource;
-use App\Models\Quiz;    // Make sure this is imported
+use App\Models\Quiz;    
 class SolvedQuizController extends Controller
 {
 

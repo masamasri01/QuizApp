@@ -27,11 +27,11 @@ class AnswerController extends Controller
             'user_answer' => $request->user_answer,
         ]);
 
-        $answer->save(); // Save the new answer to the database
+        $answer->save(); 
 
         return response()->json($answer, 201);
     }
-    // app/Http/Controllers/AnswerController.php
+  
 
 public function show(Question $question, Request $request)
 {
@@ -40,7 +40,6 @@ public function show(Question $question, Request $request)
         'solved_id' => 'required|exists:solveds,solved_id',
     ]);
 
-    // Find the answer based on both question_id and solved_id
     $answer = Answer::where('question_id', $question->question_id)
                     ->where('solved_id', $request->solved_id)
                     ->first();

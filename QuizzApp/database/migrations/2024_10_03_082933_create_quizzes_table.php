@@ -13,8 +13,8 @@ class CreateQuizzesTable extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->foreignId('examiner_id')->constrained('users')->onDelete('cascade');
-            $table->integer('time_limit')->nullable(); // in minutes
-            $table->string('status')->default('active'); // e.g., active, inactive, draft
+            $table->integer('time_limit')->nullable(); 
+            $table->string('status')->default('active'); 
             $table->timestamps();
         });
     }

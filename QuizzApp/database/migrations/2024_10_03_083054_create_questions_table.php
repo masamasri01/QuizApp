@@ -8,7 +8,7 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->id('question_id'); // This should define the primary key as 'question_id'
+            $table->id('question_id');
             $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade');
             $table->string('question_text');
             $table->enum('question_type', ['Multiple Choice', 'Checkbox']);

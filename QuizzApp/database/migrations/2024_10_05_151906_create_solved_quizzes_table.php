@@ -13,7 +13,7 @@ class CreateSolvedQuizzesTable extends Migration
             $table->id('solved_id'); 
             $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('no action');
-            $table->integer('score')->nullable(); // If you want score to be optional
+            $table->integer('score')->nullable(); 
             $table->timestamps();
         });
     }

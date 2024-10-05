@@ -9,7 +9,7 @@ class ModifyQuizzesTable extends Migration
     public function up()
     {
         Schema::table('quizzes', function (Blueprint $table) {
-            // Check if the column doesn't exist before adding
+          
             if (!Schema::hasColumn('quizzes', 'title')) {
                 $table->string('title');
             }
@@ -32,11 +32,16 @@ class ModifyQuizzesTable extends Migration
         });
     }
 
-    public function down()
-    {
-        Schema::table('quizzes', function (Blueprint $table) {
-            // You can drop columns if you want to revert the changes
-            $table->dropColumn(['title', 'description', 'examiner_id', 'time_limit', 'status']);
-        });
+    
+        public function down()
+        {
+            Schema::table('quizzes', function (Blueprint $table) {
+            
+                $table->dropForeign(['examiner_id']); 
+        
+                $table->dropColumn(['title', 'description', 'examiner_id', 'time_limit', 'status']);
+            });
+        
+        
     }
 }

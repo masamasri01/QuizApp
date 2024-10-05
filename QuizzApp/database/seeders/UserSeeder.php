@@ -18,11 +18,26 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 10; $i++) { // add 10 users
+        // Predefined list of real names and emails
+        $users = [
+            ['name' => 'John Doe', 'email' => 'johndoe@example.com'],
+            ['name' => 'Jane Smith', 'email' => 'janesmith@example.com'],
+            ['name' => 'Alice Johnson', 'email' => 'alicejohnson@example.com'],
+            ['name' => 'Bob Brown', 'email' => 'bobbrown@example.com'],
+            ['name' => 'Charlie Green', 'email' => 'charliegreen@example.com'],
+            ['name' => 'David White', 'email' => 'davidwhite@example.com'],
+            ['name' => 'Eva Black', 'email' => 'evablack@example.com'],
+            ['name' => 'Frank Harris', 'email' => 'frankharris@example.com'],
+            ['name' => 'Grace Lee', 'email' => 'gracelee@example.com'],
+            ['name' => 'Henry Walker', 'email' => 'henrywalker@example.com'],
+        ];
+
+        // Loop through the list and insert each user into the database
+        foreach ($users as $user) {
             DB::table('users')->insert([
-                'name' => Str::random(10),
-                'email' => Str::random(10) . '@example.com',
-                'password' => Hash::make('password'),
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'password' => Hash::make('password'), // Default password for all users
                 'is_active' => true,
             ]);
         }
