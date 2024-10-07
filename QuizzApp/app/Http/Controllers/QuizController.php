@@ -9,12 +9,23 @@
 
     class QuizController extends Controller
     {
-        public function index(Quiz $quiz)
-        {
-            return $quiz->questions;
+       
+        public function index(Request $request)
+        { 
+            $quizzes = Quiz::all();
+    
+            return response()->json($quizzes);
         }
-
-        
+        public function show($id)
+        {
+            $quiz = Quiz::with('questions')->find($id);
+    
+            if (!$quiz) {
+                return response()->json(['message' => 'Quiz not found'], 404);
+            }
+    
+            return response()->json($quiz);
+        }
 
         public function store(Request $request)
         {
@@ -30,10 +41,7 @@
             return response()->json($quiz, 201);
         }
 
-        public function show(Quiz $quiz, Question $question)
-        {
-            return $question;
-        }
+      
 
         public function update(Request $request, Quiz $quiz, Question $question)
         {
