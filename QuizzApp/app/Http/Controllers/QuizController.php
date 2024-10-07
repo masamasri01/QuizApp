@@ -4,6 +4,7 @@
     namespace App\Http\Controllers;
 
     use App\Models\Question;
+    use App\Models\Solved;
     use App\Models\Quiz;
     use Illuminate\Http\Request;
 
@@ -43,20 +44,46 @@
 
       
 
-        public function update(Request $request, Quiz $quiz, Question $question)
+        public function update(Request $request, $id)
         {
+            $quiz = Quiz::find($id);
+    
+            if (!$quiz) {
+                return response()->json(['message' => 'Quiz not found'], 404);
+            }
+    
             $request->validate([
-                'question_text' => 'sometimes|required|string',
-                'question_type' => 'sometimes|required|in:Multiple Choice,Checkbox',
+                'title' => 'sometimes|required|string',
+                'description' => 'sometimes|required|string',
+                'examiner_id' => 'sometimes|required|integer',
+                'time_limit' => 'sometimes|required|integer',
+                'status' => 'sometimes|required|string|in:active,inactive',
             ]);
-
-            $question->update($request->all());
-            return response()->json($question, 200);
+    
+            $quiz->update($request->all());
+            return response()->json($quiz, 200);
         }
 
-        public function destroy(Quiz $quiz, Question $question)
+        public function destroy(Quiz $quiz)
         {
-            $question->delete();
+           
+            foreach ($quiz->solved as $solved) {
+                $solved->answer()->delete(); 
+           
+            $quiz->solved()->delete(); 
+        
+            foreach ($quiz->questions as $question) {
+                $question->answers()->delete(); 
+            }
+        
+         
+            $quiz->questions()->delete(); 
+        
+        
+            $quiz->delete();
+        
             return response()->json(null, 204);
         }
+        
     }
+    }        
