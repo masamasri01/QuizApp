@@ -40,10 +40,6 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('users', [UserController::class, 'index'])->middleware('auth:sanctum');
 
 
-// Route::get('quizzes/{quiz}/solved', [SolvedQuizController::class, 'index']);
-// Route::post('quizzes/{quiz}/solved', [SolvedQuizController::class, 'store']);
-
-
 Route::apiResource('quizzes', QuizController::class);
 Route::apiResource('quizzes.questions', QuestionController::class);
 Route::apiResource('questions.options', OptionController::class);
@@ -52,3 +48,7 @@ Route::apiResource('questions.answers', AnswerController::class);
 Route::apiResource('quizzes.solved', SolvedQuizController::class);
 
 
+Route::get('questions/{question}/answers/show', [AnswerController::class, 'show']);
+
+Route::post('solveds/{solved_id}/questions/{question}/answers', [AnswerController::class, 'storeForSolved']);
+Route::get('solveds/{solved_id}/questions/{question}/answers', [AnswerController::class, 'getAnswersByQuestionAndSolved']);

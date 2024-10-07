@@ -40,9 +40,26 @@ class QuestionController extends Controller
         return response()->json($question, 200);
     }
 
-    public function destroy(Quiz $quiz, Question $question)
-    {
-        $question->delete();
-        return response()->json(null, 204);
+    public function destroy($quizId, $questionId)
+{
+   
+    $quiz = Quiz::find($quizId);
+
+    if (!$quiz) {
+        return response()->json(['message' => 'Quiz not found'], 404);
     }
+
+    $question = $quiz->questions()->find($questionId);
+
+    if (!$question) {
+        return response()->json(['message' => 'Question not found'], 404);
+    }
+
+    $question->answers()->delete();
+
+    $question->delete();
+
+    return response()->json(['message' => 'Question deleted successfully'], 200);
+}
+
 }
