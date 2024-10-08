@@ -34,6 +34,28 @@ Participants (referred to as **Respondents**) can take quizzes without the need 
 - **API Documentation**: Integrated API documentation for quiz creation and response submission using tools like Postman.
 
 
+## Laravel Architecture Overview
+
+### MVC Pattern
+
+Laravel follows the **MVC (Model-View-Controller)** architecture, which helps separate the logic of the application into three main parts:
+
+1. **Model**: 
+   - Represents the data and business logic.
+   - Interacts with the database using **Eloquent ORM** to retrieve and manage data.
+
+2. **View**: 
+   - Displays the user interface, typically as HTML.
+   - Uses **Blade**, Laravel's templating engine, to render views and display data.
+
+3. **Controller**: 
+   - Acts as the link between the Model and the View.
+   - Receives user input, retrieves data from the Model, and passes it to the View to be displayed.
+
+
+This separation helps keep the code organized, maintainable, and scalable.
+
+
 ## **UML Class Diagram**
 ![image](https://github.com/user-attachments/assets/77fe1807-4ff5-4fdb-a696-50d66039f873)
 
