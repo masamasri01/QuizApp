@@ -34,7 +34,7 @@ Participants (referred to as **Respondents**) can take quizzes without the need 
 - **API Documentation**: Integrated API documentation for quiz creation and response submission using tools like Postman.
 
 
-#### **UML Class Diagram**
+## **UML Class Diagram**
 ![image](https://github.com/user-attachments/assets/77fe1807-4ff5-4fdb-a696-50d66039f873)
 
 
