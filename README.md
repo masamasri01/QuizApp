@@ -60,7 +60,6 @@ This separation helps keep the code organized, maintainable, and scalable.
 
 
 ## **UML Class Diagram**
->>>>>>> 20c81a125c7930dc888ad193038085b0c5b6c68e
 ![image](https://github.com/user-attachments/assets/77fe1807-4ff5-4fdb-a696-50d66039f873)
 
 
