@@ -35,7 +35,7 @@
                 'description' => 'required|string',
                 'examiner_id' => 'required|integer',
                 'time_limit' => 'required|integer',
-                'status' => 'required|string|in:active,inactive',
+                'status' => 'required|string|in:0,1',
             ]);
 
             $quiz = Quiz::create($request->all());
@@ -57,7 +57,7 @@
                 'description' => 'sometimes|required|string',
                 'examiner_id' => 'sometimes|required|integer',
                 'time_limit' => 'sometimes|required|integer',
-                'status' => 'sometimes|required|string|in:active,inactive',
+                'status' => 'sometimes|required|string|in:0,1',
             ]);
     
             $quiz->update($request->all());
