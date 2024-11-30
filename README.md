@@ -34,10 +34,6 @@ Participants (referred to as **Respondents**) can take quizzes without the need 
 - **API Documentation**: Integrated API documentation for quiz creation and response submission using tools like Postman.
 
 
-#### **UML Class Diagram**
-![image](https://github.com/user-attachments/assets/964d4ec8-f862-4990-9afb-0a3f0ffd0028)
-
-=======
 ## Laravel Architecture Overview
 
 ### MVC Pattern
